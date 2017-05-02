@@ -13,7 +13,7 @@ public static void main(String[] args) {
 			++freq[dice.getValue()];
 		}
 		
-		System.out.printf("Dobbesteen %d keer gegooid\n" , count);
+		System.out.printf("Dobbelsteen %d keer gegooid\n" , count);
 		for(int j = 1; j < freq.length; j++){
 			System.out.printf("Aantal keer %d : %d \n" ,j , freq[j]);
 		}

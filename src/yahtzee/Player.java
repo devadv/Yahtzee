@@ -54,9 +54,12 @@ public class Player {
 		
 		for(int i = 0; i < dices.length; i++){
 			int n = 0;
-			System.out.print("Enter number wich dice must remain or 0 to continue. ");
+			System.out.print("Enter number wich dice must remain or 0 to continue or -1 to quite.");
 			n = input.nextInt() - 1;
 			if(n == -1){
+				break;
+			}
+			else if(n == -2){
 				break;
 			}
 			holdDice[n] = true;

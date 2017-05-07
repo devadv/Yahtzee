@@ -9,6 +9,7 @@ public class Game {
 	private Player player1;
 	private Player player2;
 	private boolean repeat;
+	private int numberOfthrows;
 
 	public Game() {
 		this.dices = new Dice[5];
@@ -35,6 +36,7 @@ public class Game {
 		System.out.println("zero to roll dices");
 		System.out.println("and 10 to end turn");
 		roll();
+		numberOfthrows++;
 		printDicesValue();
 		repeat = true;
 		while (repeat) {
@@ -76,8 +78,15 @@ public class Game {
 			printDicesValue();
 			break;
 		case 0:// roll
-			roll();
-			printDicesValue();
+			if(numberOfthrows <3){
+				roll();
+				numberOfthrows++;
+				System.out.println("Throw " +numberOfthrows + " of "  + player.getName());
+				printDicesValue();
+			}else{
+				System.out.println("End of turn: you have to choose 10 to end turn");
+			}
+			
 			break;
 		case 7:// hold all dices
 			for (int i = 0; i < dices.length; i++) {

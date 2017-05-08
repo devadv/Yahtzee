@@ -3,6 +3,8 @@ package yahtzee;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory.Default;
+
 public class Game {
 	private Dice[] dices;
 	private int rounds = 2;
@@ -97,8 +99,13 @@ public class Game {
 			printDicesValue();
 			break;
 		case 10:
-			System.out.println("Choose score!");
-			chooseScore();
+			try {
+				chooseScore(player);
+			} catch (InputMismatchException e) {
+				System.out.println("Only number from 1 to 13 are allowed.");
+				chooseScore(player);
+			}
+			
 			player.displayScoreForm();
 			reset();
 			repeat = false;
@@ -129,53 +136,59 @@ public class Game {
 		}
 	}
 
-	public void chooseScore() {
+	public void chooseScore(Player player) throws InputMismatchException {
 		Scanner keyboard = new Scanner(System.in);
-		// TODO print options form ScoreForm
+		int[] total = new int[14];
+		System.out.print("Choose score: ");
 		int score = keyboard.nextInt();
 		switch (score) {
 		case 1:
-			System.out.println("Aces");
+			System.out.println("Total of Aces: " + Yahtzee.countValueDices(dices, 1));
+			total[1] = Yahtzee.countValueDices(dices, 1);
+			player.addScore(Yahtzee.countValueDices(dices, 1), 1);
 			break;
 		case 2:
-			System.out.println("Twos");
+			System.out.println("Total of Twos: " + Yahtzee.countValueDices(dices, 2));
 			break;
 		case 3:
-			System.out.println("Threes");
+			System.out.println("Total of Threes: " + Yahtzee.countValueDices(dices, 3));
 			break;
 		case 4:
-			System.out.println("Fours");
+			System.out.println("Total of Fours: " + Yahtzee.countValueDices(dices, 4));
 			break;
 		case 5:
-			System.out.println("Fives");
+			System.out.println("Total of Fives: " + Yahtzee.countValueDices(dices, 5));
 			break;
 		case 6:
-			System.out.println("Sixes");
+			System.out.println("Total of Sixes: " + Yahtzee.countValueDices(dices, 6));
 			break;
 		case 7:
-			System.out.println("ThreeOfKind");
+			System.out.println("Total of ThreeOfKind: " + Yahtzee.countAllDices(dices));
 			break;
 		case 8:
-			System.out.println("Carre");
+			System.out.println("Total of FourOfKind: " + Yahtzee.countAllDices(dices));
 			break;
 		case 9:
-			System.out.println("FullHouse");
+			System.out.println("Total of FullHouse: " + 25);
 			break;
 		case 10:
-			System.out.println("Small Straight");
+			System.out.println("Total of Small Straight: " + 30);
 			break;
 		case 11:
-			System.out.println("Large Straight");
+			System.out.println("Total of Large Straight: " + 40);
 			break;
 		case 12:
-			System.out.println("Yahtzee");
+			System.out.println("Total of Yahtzee: " + 50);
 			break;
 		case 13:
-			System.out.println("Chance");
+			System.out.println("Total of Chance: " + Yahtzee.countAllDices(dices));
 			break;
-
+		default:
+			System.out.println("Only number from 1 to 13 are allowed.");
+			chooseScore(player);
 		}
-
+		
+		System.out.println(ScoreFormYahtzee.printScoreForm());
 	}
 
 	public static void main(String[] args) {

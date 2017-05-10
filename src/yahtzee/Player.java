@@ -24,7 +24,7 @@ public class Player {
 	}
 
 	public void displayScoreForm() {
-		ScoreFormYahtzee.printScoreForm();
+		form.printScoreForm();
 	}
 
 	public void addScore(int score, int scorePosition) {

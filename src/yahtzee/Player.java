@@ -31,4 +31,7 @@ public class Player {
 		form.addScore(score, scorePosition);
 	}
 
+	public ScoreFormYahtzee getForm() {
+		return form;
+	}
 }

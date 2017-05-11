@@ -32,6 +32,7 @@ public class Game {
 	}
 
 	public void playerTurn(Player player) {
+		
 		System.out.println();
 		System.out.println("It is " + player.getName() + "'s turn");
 		System.out.println("type dice number to hold/onhold");
@@ -39,7 +40,7 @@ public class Game {
 		System.out.println("zero to roll dices");
 		System.out.println("and 10 to end turn");
 		roll();
-		numberOfthrows++;
+		numberOfthrows=1;
 		printDicesValue();
 		repeat = true;
 		while (repeat) {
@@ -145,6 +146,7 @@ public class Game {
 		switch (score) {
 		case 1:
 			System.out.println("Total of Aces: " + Yahtzee.countValueDices(dices, 1));
+			//player.getForm().addScore(score, scorePosition);
 			player.addScore(Yahtzee.countValueDices(dices, 1), 1);
 			break;
 		case 2:

@@ -2,7 +2,7 @@ package yahtzee;
 
 public class ScoreFormYahtzee {
 
-	private static int[] scorePos;
+	private int[] scorePos;
 	private Player player;
 
 	public ScoreFormYahtzee(Player player) {

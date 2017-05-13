@@ -146,7 +146,7 @@ public class Game {
 		switch (score) {
 		case 1:
 			System.out.println("Total of Aces: " + Yahtzee.countValueDices(dices, 1));
-			//player.getForm().addScore(score, scorePosition);
+			//player.getScoreForm().addScore(score, scorePosition);
 			player.addScore(Yahtzee.countValueDices(dices, 1), 1);
 			break;
 		case 2:

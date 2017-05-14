@@ -165,7 +165,7 @@ public class Game {
 			break;
 		case 7:
 			System.out.println("Total of ThreeOfKind: " + yahtzee.countAllDices(dices));
-			if(yahtzee.isThreeOfKind(dices)){
+			if(yahtzee.checkSameDices(dices, 3)){
 				player.addScore(yahtzee.countAllDices(dices),score);
 			}
 			else{
@@ -175,7 +175,7 @@ public class Game {
 			break;
 		case 8:
 			System.out.println("Total of FourOfKind: " + yahtzee.countAllDices(dices));
-			if(yahtzee.isFourOfKind(dices)){
+			if(yahtzee.checkSameDices(dices, 4)){
 				player.addScore(yahtzee.countAllDices(dices),score);
 			}
 			else{
@@ -215,7 +215,7 @@ public class Game {
 			break;
 		case 12:
 			System.out.println("Total of Yahtzee: " + Yahtzee.YAHTZEE);
-			if(yahtzee.isYahtzee(dices)){
+			if(yahtzee.checkSameDices(dices, 5)){
 				player.addScore(yahtzee.countAllDices(dices),Yahtzee.YAHTZEE);
 			}
 			else{

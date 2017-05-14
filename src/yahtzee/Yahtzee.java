@@ -4,6 +4,10 @@ public class Yahtzee {
 	private final int rounds = 1;
 	private final int turns = 3;
 	private final int dices = 5;
+	public final static int FULLHOUSE= 25;
+	public final static int SMALLSTRAIGHT = 30;
+	public final static int LARGESTRAIGHT = 40;
+	public final static int YAHTZEE = 50;
 
 	public Yahtzee() {
 

@@ -10,10 +10,6 @@ public class Game {
 	private Player player2;
 	private boolean repeat;
 	private int numberOfthrows;
-	private final int FullHouseValue = 25;
-	private final int SmallStraightValue = 30;
-	private final int LargeStraightValue = 40;
-	private final int YahtzeeValue = 50;
 	private Yahtzee yahtzee;
 
 	public Game() {
@@ -174,36 +170,57 @@ public class Game {
 			}
 			else{
 				System.out.println("This is not ThreeOfKind choose again.");
+				chooseScore(player);
 			}
 			break;
 		case 8:
 			System.out.println("Total of FourOfKind: " + yahtzee.countAllDices(dices));
 			if(yahtzee.isFourOfKind(dices)){
-				
+				player.addScore(yahtzee.countAllDices(dices),score);
+			}
+			else{
+				System.out.println("This is not FourOfKind choose again.");
+				chooseScore(player);
 			}
 			break;
 		case 9:
-			System.out.println("Total of FullHouse: " + FullHouseValue);
+			System.out.println("Total of FullHouse: " + Yahtzee.FULLHOUSE);
 			if(yahtzee.isFullHouse(dices)){
-				
+				player.addScore(yahtzee.countAllDices(dices),Yahtzee.FULLHOUSE);
+			}
+			else{
+				System.out.println("This is not Fullhouse choose again.");
+				chooseScore(player);
 			}
 			break;
 		case 10:
-			System.out.println("Total of Small Straight: " + SmallStraightValue);
+			System.out.println("Total of Small Straight: " + Yahtzee.SMALLSTRAIGHT);
 			if(yahtzee.isSmallStraight(dices)){
-				
+				player.addScore(yahtzee.countAllDices(dices),Yahtzee.SMALLSTRAIGHT);
+			}
+			else{
+				System.out.println("This is not Small Straight choose again.");
+				chooseScore(player);
 			}
 			break;
 		case 11:
-			System.out.println("Total of Large Straight: " + LargeStraightValue);
+			System.out.println("Total of Large Straight: " + Yahtzee.LARGESTRAIGHT);
 			if(yahtzee.isLargeStraight(dices)){
-				
+				player.addScore(yahtzee.countAllDices(dices),Yahtzee.LARGESTRAIGHT);
+			}
+			else{
+				System.out.println("This is not Large Straight choose again.");
+				chooseScore(player);
 			}
 			break;
 		case 12:
-			System.out.println("Total of Yahtzee: " + YahtzeeValue);
+			System.out.println("Total of Yahtzee: " + Yahtzee.YAHTZEE);
 			if(yahtzee.isYahtzee(dices)){
-				
+				player.addScore(yahtzee.countAllDices(dices),Yahtzee.YAHTZEE);
+			}
+			else{
+				System.out.println("This is not Yahtzee choose again.");
+				chooseScore(player);
 			}
 			break;
 		case 13:

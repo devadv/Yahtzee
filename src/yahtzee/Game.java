@@ -10,10 +10,10 @@ public class Game {
 	private Player player2;
 	private boolean repeat;
 	private int numberOfthrows;
-	private final int FullHouseValue = 25;
-	private final int SmallStraightValue = 30;
-	private final int LargeStraightValue = 40;
-	private final int YahtzeeValue = 50;
+	private static final int FULL_HOUSE_VALUE = 25;
+	private static final int SMALL_STRAIGHT_VALUE = 30;
+	private static final int LARGE_STRAIGHT_VALUE = 40;
+	private static final int YAHTZEE_VALUE = 50;
 	private Yahtzee yahtzee;
 
 	public Game() {
@@ -183,25 +183,25 @@ public class Game {
 			}
 			break;
 		case 9:
-			System.out.println("Total of FullHouse: " + FullHouseValue);
+			System.out.println("Total of FullHouse: " + FULL_HOUSE_VALUE);
 			if(yahtzee.isFullHouse(dices)){
 				
 			}
 			break;
 		case 10:
-			System.out.println("Total of Small Straight: " + SmallStraightValue);
+			System.out.println("Total of Small Straight: " + SMALL_STRAIGHT_VALUE);
 			if(yahtzee.isSmallStraight(dices)){
 				
 			}
 			break;
 		case 11:
-			System.out.println("Total of Large Straight: " + LargeStraightValue);
+			System.out.println("Total of Large Straight: " + LARGE_STRAIGHT_VALUE);
 			if(yahtzee.isLargeStraight(dices)){
 				
 			}
 			break;
 		case 12:
-			System.out.println("Total of Yahtzee: " + YahtzeeValue);
+			System.out.println("Total of Yahtzee: " + YAHTZEE_VALUE);
 			if(yahtzee.isYahtzee(dices)){
 				
 			}

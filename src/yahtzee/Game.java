@@ -10,10 +10,6 @@ public class Game {
 	private Player player2;
 	private boolean repeat;
 	private int numberOfthrows;
-	private static final int FULL_HOUSE_VALUE = 25;
-	private static final int SMALL_STRAIGHT_VALUE = 30;
-	private static final int LARGE_STRAIGHT_VALUE = 40;
-	private static final int YAHTZEE_VALUE = 50;
 	private Yahtzee yahtzee;
 
 	public Game() {
@@ -150,26 +146,26 @@ public class Game {
 		
 		switch (score) {
 		case 1:
-			printScore(player, "Total of Aces: ", score);
+			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
 			break;
 		case 2:
-			printScore(player, "Total of Twos: ", score);
+			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
 			break;
 		case 3:
-			printScore(player, "Total of Threes: ", score);
+			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
 			break;
 		case 4:
-			printScore(player, "Total of Fours: ", score);
+			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
 			break;
 		case 5:
-			printScore(player, "Total of Fives: ", score);
+			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
 			break;
 		case 6:
-			printScore(player, "Total of Sixes: ", score);
+			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
 			break;
 		case 7:
 			System.out.println("Total of ThreeOfKind: " + yahtzee.countAllDices(dices));
-			if(yahtzee.checkSameDices(dices, 3)){
+			if(yahtzee.isSameDices(dices, 3)){
 				player.addScore(yahtzee.countAllDices(dices),score);
 			}
 			else{
@@ -179,7 +175,7 @@ public class Game {
 			break;
 		case 8:
 			System.out.println("Total of FourOfKind: " + yahtzee.countAllDices(dices));
-			if(yahtzee.checkSameDices(dices, 4)){
+			if(yahtzee.isSameDices(dices, 4)){
 				player.addScore(yahtzee.countAllDices(dices),score);
 			}
 			else{
@@ -190,7 +186,10 @@ public class Game {
 		case 9:
 			System.out.println("Total of FullHouse: " + Yahtzee.FULLHOUSE);
 			if(yahtzee.isFullHouse(dices)){
-				
+				player.getScoreForm().addScore(Yahtzee.FULLHOUSE, 9);
+			}
+			else if(yahtzee.isSameDices(dices, 5) && player.getScoreForm().isYahtzeeFilled()){
+				player.getScoreForm().addScore(Yahtzee.FULLHOUSE, 9);
 			}
 			else{
 				System.out.println("This is not Fullhouse choose again.");
@@ -200,7 +199,7 @@ public class Game {
 		case 10:
 			System.out.println("Total of Small Straight: " + Yahtzee.SMALLSTRAIGHT);
 			if(yahtzee.isSmallStraight(dices)){
-				
+				player.getScoreForm().addScore(Yahtzee.SMALLSTRAIGHT, 10);
 			}
 			else{
 				System.out.println("This is not Small Straight choose again.");
@@ -208,10 +207,9 @@ public class Game {
 			}
 			break;
 		case 11:
-			
 			System.out.println("Total of Large Straight: " + Yahtzee.LARGESTRAIGHT);
 			if(yahtzee.isLargeStraight(dices)){
-				
+				player.getScoreForm().addScore(Yahtzee.LARGESTRAIGHT, 11);
 			}
 			else{
 				System.out.println("This is not Large Straight choose again.");
@@ -219,12 +217,9 @@ public class Game {
 			}
 			break;
 		case 12:
-			
-			
-				
 			System.out.println("Total of Yahtzee: " + Yahtzee.YAHTZEE);
-			if(yahtzee.checkSameDices(dices, 5)){
-				
+			if(yahtzee.isSameDices(dices, 5)){
+				player.getScoreForm().addScore(Yahtzee.YAHTZEE, 12);
 			}
 			else{
 				System.out.println("This is not Yahtzee choose again.");
@@ -232,7 +227,7 @@ public class Game {
 			}
 			break;
 		case 13:
-			printScore(player, "Total of Chance: ", score);
+			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
 		default:
 			System.out.println("Only number from 1 to 13 are allowed.");
 			chooseScore(player);
@@ -240,10 +235,6 @@ public class Game {
 		
 	}
 	
-	private void printScore(Player player, String scoreText, int score){
-		System.out.println(scoreText + yahtzee.countValueDices(dices, score));
-		player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
-	}
 
 	public static void main(String[] args) {
 

@@ -52,15 +52,9 @@ public class Yahtzee {
 		}
 		
 		Collections.sort(list);
-		int fourAscending = 0;
 		
-		for(int j = 0; j < dice.length; j++){
-			if(list.get(j) == String.valueOf(j + 1)){
-				fourAscending++;
-				if(fourAscending == 4){
-					return true;
-				}
-			}
+		if(String.valueOf(list) == "1234" | String.valueOf(list) == "2345" | String.valueOf(list) == "3456" ){
+			return true;
 		}
 					
 		return false;

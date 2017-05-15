@@ -169,41 +169,66 @@ public class Game {
 			break;
 		case 7:
 			System.out.println("Total of ThreeOfKind: " + yahtzee.countAllDices(dices));
-			if(yahtzee.isThreeOfKind(dices)){
+			if(yahtzee.checkSameDices(dices, 3)){
 				player.addScore(yahtzee.countAllDices(dices),score);
 			}
 			else{
 				System.out.println("This is not ThreeOfKind choose again.");
+				chooseScore(player);
 			}
 			break;
 		case 8:
 			System.out.println("Total of FourOfKind: " + yahtzee.countAllDices(dices));
-			if(yahtzee.isFourOfKind(dices)){
-				
+			if(yahtzee.checkSameDices(dices, 4)){
+				player.addScore(yahtzee.countAllDices(dices),score);
+			}
+			else{
+				System.out.println("This is not FourOfKind choose again.");
+				chooseScore(player);
 			}
 			break;
 		case 9:
-			System.out.println("Total of FullHouse: " + FULL_HOUSE_VALUE);
+			System.out.println("Total of FullHouse: " + Yahtzee.FULLHOUSE);
 			if(yahtzee.isFullHouse(dices)){
 				
 			}
+			else{
+				System.out.println("This is not Fullhouse choose again.");
+				chooseScore(player);
+			}
 			break;
 		case 10:
-			System.out.println("Total of Small Straight: " + SMALL_STRAIGHT_VALUE);
+			System.out.println("Total of Small Straight: " + Yahtzee.SMALLSTRAIGHT);
 			if(yahtzee.isSmallStraight(dices)){
 				
 			}
+			else{
+				System.out.println("This is not Small Straight choose again.");
+				chooseScore(player);
+			}
 			break;
 		case 11:
-			System.out.println("Total of Large Straight: " + LARGE_STRAIGHT_VALUE);
+			
+			System.out.println("Total of Large Straight: " + Yahtzee.LARGESTRAIGHT);
 			if(yahtzee.isLargeStraight(dices)){
 				
 			}
+			else{
+				System.out.println("This is not Large Straight choose again.");
+				chooseScore(player);
+			}
 			break;
 		case 12:
-			System.out.println("Total of Yahtzee: " + YAHTZEE_VALUE);
-			if(yahtzee.isYahtzee(dices)){
+			
+			
 				
+			System.out.println("Total of Yahtzee: " + Yahtzee.YAHTZEE);
+			if(yahtzee.checkSameDices(dices, 5)){
+				
+			}
+			else{
+				System.out.println("This is not Yahtzee choose again.");
+				chooseScore(player);
 			}
 			break;
 		case 13:
@@ -217,7 +242,7 @@ public class Game {
 	
 	private void printScore(Player player, String scoreText, int score){
 		System.out.println(scoreText + yahtzee.countValueDices(dices, score));
-		player.getForm().addScore(yahtzee.countValueDices(dices, score), score);
+		player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
 	}
 
 	public static void main(String[] args) {

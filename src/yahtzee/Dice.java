@@ -22,6 +22,10 @@ public class Dice {
 		return diceValue;
 
 	}
+	public Dice setValue(int value){
+		diceValue = value;
+		return this;
+	}
 
 	public void setHold() {
 		hold = !hold;
@@ -33,3 +37,4 @@ public class Dice {
 	}
 
 }
+

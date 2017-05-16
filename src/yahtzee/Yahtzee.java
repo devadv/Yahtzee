@@ -109,7 +109,7 @@ public class Yahtzee {
 	}
 
 	public boolean isSameDices(Dice[] dice, int digitOfDice) {
-		int[] n = new int[amountDices + 1];
+		int[] n = new int[7];
 		
 		for (int i = 0; i < dice.length; i++) {
 			n[dice[i].getValue()]++;

@@ -198,7 +198,7 @@ public class Game {
 			break;
 		case 10:
 			System.out.println("Total of Small Straight: " + Yahtzee.SMALLSTRAIGHT);
-			if(yahtzee.isSmallStraight(dices)){
+			if(yahtzee.isStraight(dices, 4)){
 				player.getScoreForm().addScore(Yahtzee.SMALLSTRAIGHT, 10);
 			}
 			else{
@@ -208,7 +208,7 @@ public class Game {
 			break;
 		case 11:
 			System.out.println("Total of Large Straight: " + Yahtzee.LARGESTRAIGHT);
-			if(yahtzee.isLargeStraight(dices)){
+			if(yahtzee.isStraight(dices, 5)){
 				player.getScoreForm().addScore(Yahtzee.LARGESTRAIGHT, 11);
 			}
 			else{

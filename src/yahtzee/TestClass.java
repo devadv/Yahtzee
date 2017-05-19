@@ -1,92 +1,103 @@
 package yahtzee;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class TestClass {
+	static Data data;
+	static Yahtzee yahtzee;
+	static Dice[] dices;
+	static Player player;
+	static Game game;
 	
-	
-	public static void printDices(Dice[] dices){
-	
-		for(int i = 0; i< dices.length;i++){
-			System.out.printf("%5d ", dices[i].getValue());
-		}
-		
-	}
-	
-
 	public static void main(String[] args) {
+		data = new Data();
+		yahtzee = new Yahtzee();
+		game = new Game();
+		player = new Player("Jan");
 		
+		TestClass testClass = new TestClass();
 		
-		Data data = new Data();
-		Yahtzee yahtzee = new Yahtzee();
-		
-		ArrayList<Dice[]> listArrayDices = data.getArrayListDices();
-		
-		System.out.printf("%20s %14s %5s %5s %5s %5s %5s %5s\n" , 
-				"Dices" , "Pair" ,"3K" , "4K" ,"FH" , "SS" ,"LS" , "Y");
-		for( Dice[] dices: listArrayDices){
+		for(int j = 0; j < 1; j++){
+			dices = new Dice[5];
 			
-			TestClass.printDices(dices);
-			System.out.printf("|%5s " , yahtzee.isSameDices(dices, 2));
-			System.out.printf("%5s " , yahtzee.isSameDices(dices, 3));
-			System.out.printf("%5s " , yahtzee.isSameDices(dices, 4));
-			System.out.printf("%5s " , yahtzee.isFullHouse(dices));
-			System.out.printf("%5s " , yahtzee.isStraight(dices, 4));
-			System.out.printf("%5s " , yahtzee.isStraight(dices, 5));
-			System.out.printf("%5s \n" , yahtzee.isSameDices(dices, 5));
-			
-		}
-		
-		
-		for(int j = 0; j < 100; j++){
-			Dice[] dices = new Dice[5];
 			for (int i = 0; i < dices.length; i++) {
 				dices[i] = new Dice();
 				dices[i].roll();
 			}
 			
-			// test method isSameDices
-			if(yahtzee.isSameDices(dices, 2) | yahtzee.isSameDices(dices, 3) | yahtzee.isSameDices(dices, 4)|
-					yahtzee.isSameDices(dices, 5) | yahtzee.isSameDices(dices, 6)){
-				
-			}
-			else{
-				System.out.println("No same dices.");
-				for(int k = 0; k < dices.length; k++){
-					System.out.println("Dice " + (k + 1) + "  "  + dices[k].getValue());
-				}
-				System.out.println();
-			}// end test method isSameDices
-			
-			// test Full House
-			if(yahtzee.isFullHouse(dices)){
-				System.out.println("Full House.");
-				for(int k = 0; k < dices.length; k++){
-					System.out.println("Dice " + (k + 1) + "  "  + dices[k].getValue());
-				}
-				System.out.println();
-			}
-			else{
-				//System.out.println("No Full House.");
+			//testClass.testIsSamedices();
+			//testClass.testIsSmallStraight();
+			//testClass.testIsFullHouse();	
+			game.setdices(dices);
+			printDices(dices);
+			for(int i = 1; i < 14; i++){
+				game.executeScore(player, i);
 			}
 			
-			// test Small Straight
-			if(yahtzee.isStraight(dices, 4)){
-				System.out.println("Small Straight.");
-				for(int k = 0; k < dices.length; k++){
-					System.out.println("Dice " + (k + 1) + "  "  + dices[k].getValue());
-				}
-				System.out.println();
-			}
-			else{
-				//System.out.println("No Small Straight.");
-			}
-			
-		}// end outer for
+		}
+		
 	}
 	
+	public void testIsSamedices() {
+		if(yahtzee.isSameDices(dices, 2)){
+			printMessgeDices("2 dices are the same.");
+		}
+		else if(yahtzee.isSameDices(dices, 3)){
+			printMessgeDices("3 dices are the same.");
+		}
+		else if(yahtzee.isSameDices(dices, 4)){
+			printMessgeDices("4 dices are the same.");
+		}
+		else if(yahtzee.isSameDices(dices, 5)){
+			printMessgeDices("5 dices are the same.");
+		}
+		else{
+			printMessgeDices("No dices are the same.");
+		}
+	}
 	
+	public void testIsSmallStraight() {
+		if(yahtzee.isStraight(dices, 4)){
+			//printCategorYAndDiceDigits("Small straight.");			
+		}
+		else{
+			printMessgeDices("No small straight.");
+		}
+	}
 	
+	public void testIsFullHouse() {
+		
+		if(yahtzee.isFullHouse(dices)){
+			printMessgeDices("Full House.");
+		}
+		else{
+			//printCategorYAndDiceDigits("No Full House.");
+		}
+	}
+	
+	public void printMessgeDices(String name) {
+		System.out.println(name);
+		printDices(dices);
+	}
+	
+	public static void printDices(Dice[] dices){
+		
+		ArrayList<Integer> list = new ArrayList<>();
+		
+		for(int i = 0; i < dices.length; i++){
+			list.add(dices[i].getValue());
+		}
+		
+		Collections.sort(list);
+		
+		for(int j = 0; j < list.size(); j++){
+			System.out.print(list.get(j) + " ");
+		}
+		
+		System.out.println();
+		System.out.println();
+	}
 
-}
+}// end class Testclass
 

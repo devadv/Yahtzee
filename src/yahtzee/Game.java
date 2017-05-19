@@ -102,10 +102,10 @@ public class Game {
 			break;
 		case 10:
 			try {
-				chooseScore(player);
+				executeScore(player, 10);
 			} catch (InputMismatchException e) {
 				System.out.println("Only number from 1 to 13 are allowed.");
-				chooseScore(player);
+				executeScore(player, 10);
 			}
 			
 			player.displayScoreForm();
@@ -137,12 +137,17 @@ public class Game {
 			}
 		}
 	}
-
-	public void chooseScore(Player player) throws InputMismatchException {
+	
+	public void chooseScore(Player player, int scoreDigit) {
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("Choose score: ");
+		int score = keyboard.nextInt();
+		executeScore(player, score);
+	}
+
+	public void executeScore(Player player, int score) throws InputMismatchException {
 		player.displayScoreForm();
-		int score = keyboard.nextInt();	
+		int tries = 0;
 		
 		switch (score) {
 		case 1:
@@ -170,7 +175,13 @@ public class Game {
 			}
 			else{
 				System.out.println("This is not ThreeOfKind choose again.");
-				chooseScore(player);
+				tries++;
+				if(tries < 3){
+					executeScore(player, score);
+				}
+				else{
+					System.out.println("Your turn is over.");
+				}
 			}
 			break;
 		case 8:
@@ -180,7 +191,13 @@ public class Game {
 			}
 			else{
 				System.out.println("This is not FourOfKind choose again.");
-				chooseScore(player);
+				tries++;
+				if(tries < 3){
+					executeScore(player, score);
+				}
+				else{
+					System.out.println("Your turn is over.");
+				}
 			}
 			break;
 		case 9:
@@ -193,7 +210,13 @@ public class Game {
 			}
 			else{
 				System.out.println("This is not Fullhouse choose again.");
-				chooseScore(player);
+				tries++;
+				if(tries < 3){
+					executeScore(player, score);
+				}
+				else{
+					System.out.println("Your turn is over.");
+				}
 			}
 			break;
 		case 10:
@@ -203,7 +226,13 @@ public class Game {
 			}
 			else{
 				System.out.println("This is not Small Straight choose again.");
-				chooseScore(player);
+				tries++;
+				if(tries < 3){
+					executeScore(player, score);
+				}
+				else{
+					System.out.println("Your turn is over.");
+				}
 			}
 			break;
 		case 11:
@@ -213,7 +242,13 @@ public class Game {
 			}
 			else{
 				System.out.println("This is not Large Straight choose again.");
-				chooseScore(player);
+				tries++;
+				if(tries < 3){
+					executeScore(player, score);
+				}
+				else{
+					System.out.println("Your turn is over.");
+				}
 			}
 			break;
 		case 12:
@@ -223,16 +258,32 @@ public class Game {
 			}
 			else{
 				System.out.println("This is not Yahtzee choose again.");
-				chooseScore(player);
+				tries++;
+				if(tries < 3){
+					executeScore(player, score);
+				}
+				else{
+					System.out.println("Your turn is over.");
+				}
 			}
 			break;
 		case 13:
 			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
 		default:
 			System.out.println("Only number from 1 to 13 are allowed.");
-			chooseScore(player);
+			tries++;
+			if(tries < 3){
+				executeScore(player, score);
+			}
+			else{
+				System.out.println("Your turn is over.");
+			}
 		}
 		
+	}
+	
+	public void setdices(Dice[] dices) {
+		this.dices = dices;
 	}
 	
 

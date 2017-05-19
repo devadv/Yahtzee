@@ -50,11 +50,11 @@ public class Yahtzee {
 	
 	/**
 	 * 
-	 * @param dice
+	 * @param dices
 	 * @param streetLenght
-	 * @return
+	 * @return true if it is a straight
 	 */
-	public boolean isStraightx(Dice[] dices, int streetLenght) {
+	public boolean isStraight(Dice[] dices, int streetLenght) {
 		List<Integer> list = new ArrayList<>(dices.length);
 		int successive = 0;
 		for(int i = 0; i < dices.length; i++){
@@ -67,7 +67,7 @@ public class Yahtzee {
 			if(list.get(i + 1) - list.get(i) == 1){
 				successive++;
 			}
-			else if(list.get(i + 1) - list.get(i) >= 2){
+			else if(list.get(i + 1) - list.get(i) >= 3){
 				return false;
 			}
 		}
@@ -79,8 +79,8 @@ public class Yahtzee {
 		return false;
 	}
 	
-	
-	public boolean isStraight(Dice[] dices, int straightLenght) {
+	// Deze methode werkt niet!
+	public boolean isStraight_XXX(Dice[] dices, int straightLenght) {
 		HashSet<Integer> list = new HashSet<>();
 		
 		for(int i = 0; i < dices.length; i++){

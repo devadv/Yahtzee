@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class TestClass {
-	static Data data;
 	static Yahtzee yahtzee;
 	static Dice[] dices;
 	static Player player;
 	static Game game;
+	static ScoreFormYahtzee scoreFormYahtzee;
 	
 	public static void main(String[] args) {
-		data = new Data();
 		yahtzee = new Yahtzee();
 		game = new Game();
 		player = new Player("Jan");
+		scoreFormYahtzee = new ScoreFormYahtzee(player);
+		
 		
 		TestClass testClass = new TestClass();
 		
@@ -25,16 +26,20 @@ public class TestClass {
 				dices[i] = new Dice();
 				dices[i].roll();
 			}
+
 			
 			//testClass.testIsSamedices();
 			//testClass.testIsSmallStraight();
 			//testClass.testIsFullHouse();	
 			game.setdices(dices);
 			printDices(dices);
+			game.testGameClass(false);
+			
 			for(int i = 1; i < 14; i++){
 				game.executeScore(player, i);
 			}
 			
+			player.getScoreForm().printScoreForm();
 		}
 		
 	}

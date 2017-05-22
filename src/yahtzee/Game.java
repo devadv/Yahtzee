@@ -11,6 +11,7 @@ public class Game {
 	private boolean repeat;
 	private int numberOfthrows;
 	private Yahtzee yahtzee;
+	private boolean tries = true;
 
 	public Game() {
 		this.dices = new Dice[5];
@@ -138,16 +139,15 @@ public class Game {
 		}
 	}
 	
-	public void chooseScore(Player player, int scoreDigit) {
+	public void chooseScore(Player player) {
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("Choose score: ");
 		int score = keyboard.nextInt();
 		executeScore(player, score);
 	}
-
+	
 	public void executeScore(Player player, int score) throws InputMismatchException {
-		player.displayScoreForm();
-		int tries = 0;
+		//player.displayScoreForm();
 		
 		switch (score) {
 		case 1:
@@ -169,39 +169,28 @@ public class Game {
 			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
 			break;
 		case 7:
-			System.out.println("Total of ThreeOfKind: " + yahtzee.countAllDices(dices));
 			if(yahtzee.isSameDices(dices, 3)){
 				player.addScore(yahtzee.countAllDices(dices),score);
 			}
 			else{
 				System.out.println("This is not ThreeOfKind choose again.");
-				tries++;
-				if(tries < 3){
+				if(tries){
 					executeScore(player, score);
-				}
-				else{
-					System.out.println("Your turn is over.");
 				}
 			}
 			break;
 		case 8:
-			System.out.println("Total of FourOfKind: " + yahtzee.countAllDices(dices));
 			if(yahtzee.isSameDices(dices, 4)){
 				player.addScore(yahtzee.countAllDices(dices),score);
 			}
 			else{
 				System.out.println("This is not FourOfKind choose again.");
-				tries++;
-				if(tries < 3){
+				if(tries){
 					executeScore(player, score);
-				}
-				else{
-					System.out.println("Your turn is over.");
 				}
 			}
 			break;
 		case 9:
-			System.out.println("Total of FullHouse: " + Yahtzee.FULLHOUSE);
 			if(yahtzee.isFullHouse(dices)){
 				player.getScoreForm().addScore(Yahtzee.FULLHOUSE, 9);
 			}
@@ -210,73 +199,51 @@ public class Game {
 			}
 			else{
 				System.out.println("This is not Fullhouse choose again.");
-				tries++;
-				if(tries < 3){
+				if(tries){
 					executeScore(player, score);
-				}
-				else{
-					System.out.println("Your turn is over.");
 				}
 			}
 			break;
 		case 10:
-			System.out.println("Total of Small Straight: " + Yahtzee.SMALLSTRAIGHT);
 			if(yahtzee.isStraight(dices, 4)){
 				player.getScoreForm().addScore(Yahtzee.SMALLSTRAIGHT, 10);
 			}
 			else{
 				System.out.println("This is not Small Straight choose again.");
-				tries++;
-				if(tries < 3){
-					executeScore(player, score);
-				}
-				else{
-					System.out.println("Your turn is over.");
+				if(tries){
+					chooseScore(player);
 				}
 			}
 			break;
 		case 11:
-			System.out.println("Total of Large Straight: " + Yahtzee.LARGESTRAIGHT);
 			if(yahtzee.isStraight(dices, 5)){
 				player.getScoreForm().addScore(Yahtzee.LARGESTRAIGHT, 11);
 			}
 			else{
 				System.out.println("This is not Large Straight choose again.");
-				tries++;
-				if(tries < 3){
-					executeScore(player, score);
-				}
-				else{
-					System.out.println("Your turn is over.");
+				if(tries){
+					chooseScore(player);
 				}
 			}
 			break;
 		case 12:
-			System.out.println("Total of Yahtzee: " + Yahtzee.YAHTZEE);
 			if(yahtzee.isSameDices(dices, 5)){
 				player.getScoreForm().addScore(Yahtzee.YAHTZEE, 12);
 			}
 			else{
 				System.out.println("This is not Yahtzee choose again.");
-				tries++;
-				if(tries < 3){
-					executeScore(player, score);
-				}
-				else{
-					System.out.println("Your turn is over.");
+				if(tries){
+					chooseScore(player);
 				}
 			}
 			break;
 		case 13:
 			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
+			break;
 		default:
 			System.out.println("Only number from 1 to 13 are allowed.");
-			tries++;
-			if(tries < 3){
-				executeScore(player, score);
-			}
-			else{
-				System.out.println("Your turn is over.");
+			if(tries){
+				chooseScore(player);
 			}
 		}
 		
@@ -284,6 +251,10 @@ public class Game {
 	
 	public void setdices(Dice[] dices) {
 		this.dices = dices;
+	}
+	
+	public void testGameClass(boolean tries) {
+		this.tries = tries;
 	}
 	
 

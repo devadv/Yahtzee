@@ -13,7 +13,8 @@ public class ScoreFormYahtzee {
 	public void addScore(int score, int scorePosition) {
 		this.scorePosition[scorePosition] = score;
 	}
-
+	
+	String s;
 	public void printScoreForm() {
 
 		String s = String.format("List of score %s", player.getName());
@@ -31,6 +32,10 @@ public class ScoreFormYahtzee {
 		s += "\n12. Total of Yahtzee: " + scorePosition[12];
 		s += "\n13. Total of Chance:: " + scorePosition[13];
 		
+		System.out.println(s);
+	}
+	
+	public void setPrintScoreForm() {
 		System.out.println(s);
 	}
 	

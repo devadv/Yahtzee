@@ -78,22 +78,6 @@ public class Yahtzee {
 			
 		return false;
 	}
-	
-	// Deze methode werkt niet!
-	public boolean isStraight_XXX(Dice[] dices, int straightLenght) {
-		HashSet<Integer> list = new HashSet<>();
-		
-		for(int i = 0; i < dices.length; i++){
-			list.add((dices[i].getValue()));
-		}
-		
-		if(list.size() == straightLenght){
-			return true;
-		}
-		
-		return false;
-	}
-
 
 	/*
 	 * 

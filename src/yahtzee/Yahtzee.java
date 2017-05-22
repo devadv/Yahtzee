@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
+import com.sun.org.apache.regexp.internal.recompile;
+
 public class Yahtzee {
 	private final int rounds = 1;
 	private final int turns = 3;
@@ -67,17 +69,23 @@ public class Yahtzee {
 			if(list.get(i + 1) - list.get(i) == 1){
 				successive++;
 			}
-			else if(list.get(i + 1) - list.get(i) >= 3){
+			else if(list.get(i + 1) - list.get(i) == 2 && successive >= 1){
 				return false;
 			}
+						
 		}
 		
+		if(successive == (streetLenght)){
+			return true;
+		}
 		if(successive == (streetLenght - 1)){
 			return true;
 		}
-			
+						
 		return false;
 	}
+
+	
 
 	/*
 	 * 

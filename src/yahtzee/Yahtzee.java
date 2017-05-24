@@ -69,7 +69,10 @@ public class Yahtzee {
 			if(list.get(i + 1) - list.get(i) == 1){
 				successive++;
 			}
-			else if(list.get(i + 1) - list.get(i) == 2 && successive >= 1){
+			else if(list.get(i + 1) - list.get(i) == 2 && successive == 1){
+				return false;
+			}
+			else if(list.get(i + 1) - list.get(i) == 2 && successive == 2){
 				return false;
 			}
 						

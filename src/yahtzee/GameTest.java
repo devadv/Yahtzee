@@ -6,9 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class GameTest {
-
+	private Game game;
 	@Before
 	public void setUp() throws Exception {
+		this.game = new Game();
+		game.start();
 	}
 
 	@Test

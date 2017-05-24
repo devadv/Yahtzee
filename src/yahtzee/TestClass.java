@@ -19,7 +19,7 @@ public class TestClass {
 		
 		TestClass testClass = new TestClass();
 		
-		for(int j = 0; j < 100; j++){
+		for(int j = 0; j < 1; j++){
 			dices = new Dice[5];
 			
 			for (int i = 0; i < dices.length; i++) {
@@ -28,19 +28,21 @@ public class TestClass {
 			}
 			
 			//testClass.testIsSamedices();
-			testClass.testIsSmallStraight();
-			testClass.testIslargeStraight();
+			//testClass.testIsSmallStraight();
+			//testClass.testIslargeStraight();
 			//testClass.testIsFullHouse();	
-//			game.setdices(dices);
-//			printDices(dices);
-//			game.testGameClass(false);
-//			
-//			for(int i = 1; i < 14; i++){
-//				game.executeScore(player, i);
-//			}
-//			
-//			player.getScoreForm().printScoreForm();
+						
 		}
+		
+		game.setdices(dices);
+		printDices(dices);
+		game.testGameClass(false);
+		
+		for(int i = 1; i < 14; i++){
+			game.executeScore(player, i);
+		}
+		
+		player.getScoreForm().printScoreForm();
 		
 	}
 	

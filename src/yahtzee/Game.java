@@ -238,7 +238,7 @@ public class Game {
 			}
 			break;
 		case 13:
-			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
+			player.getScoreForm().addScore(yahtzee.countAllDices(dices), 13);
 			break;
 		default:
 			System.out.println("Only number from 1 to 13 are allowed.");

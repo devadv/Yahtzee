@@ -151,26 +151,26 @@ public class Game {
 		
 		switch (score) {
 		case 1:
-			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
+			addScore(player, score);
 			break;
 		case 2:
-			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
+			addScore(player, score);
 			break;
 		case 3:
-			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
+			addScore(player, score);
 			break;
 		case 4:
-			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
+			addScore(player, score);
 			break;
 		case 5:
-			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
+			addScore(player, score);
 			break;
 		case 6:
-			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
+			addScore(player, score);
 			break;
 		case 7:
 			if(yahtzee.isSameDices(dices, 3)){
-				player.addScore(yahtzee.countAllDices(dices),score);
+				player.getScoreForm().addScore(yahtzee.countAllDices(dices),score);
 			}
 			else{
 				System.out.println("This is not ThreeOfKind choose again.");
@@ -181,7 +181,7 @@ public class Game {
 			break;
 		case 8:
 			if(yahtzee.isSameDices(dices, 4)){
-				player.addScore(yahtzee.countAllDices(dices),score);
+				player.getScoreForm().addScore(yahtzee.countAllDices(dices),score);
 			}
 			else{
 				System.out.println("This is not FourOfKind choose again.");
@@ -228,7 +228,16 @@ public class Game {
 			break;
 		case 12:
 			if(yahtzee.isSameDices(dices, 5)){
-				player.getScoreForm().addScore(Yahtzee.YAHTZEE, 12);
+				if(player.getScoreForm().isYahtzeeFilled() == false){
+					player.getScoreForm().addScore(Yahtzee.YAHTZEE, 12);
+				}
+				else{
+					player.getScoreForm().addScore(Yahtzee.YAHTZEEBONUS, 12);
+					System.out.println("Fill the score also in another catagory.");
+					if(tries){
+						chooseScore(player);
+					}
+				}
 			}
 			else{
 				System.out.println("This is not Yahtzee choose again.");
@@ -238,7 +247,10 @@ public class Game {
 			}
 			break;
 		case 13:
-			player.getScoreForm().addScore(yahtzee.countAllDices(dices), 13);
+			if(player.getScoreForm().canAddScore(yahtzee.countAllDices(dices), 13)){
+				player.getScoreForm().addScore(yahtzee.countAllDices(dices), 13);
+			}
+			
 			break;
 		default:
 			System.out.println("Only number from 1 to 13 are allowed.");
@@ -247,6 +259,18 @@ public class Game {
 			}
 		}
 		
+	}
+	
+	public void addScore(Player player,int score) {
+		if( player.getScoreForm().canAddScore(yahtzee.countValueDices(dices, score), score) ){
+			player.getScoreForm().addScore(yahtzee.countValueDices(dices, score), score);
+		}
+		else{
+			System.out.println("Position in score form is filled choose again.");
+			if(tries){
+				chooseScore(player);
+			}
+		}
 	}
 	
 	public void setdices(Dice[] dices) {

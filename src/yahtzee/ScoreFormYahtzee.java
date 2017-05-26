@@ -1,5 +1,8 @@
 package yahtzee;
 
+import com.sun.org.apache.regexp.internal.recompile;
+
+
 public class ScoreFormYahtzee {
 
 	private int[] scorePosition;
@@ -10,8 +13,27 @@ public class ScoreFormYahtzee {
 		this.player = player;
 	}
 	
+	public boolean canAddScore(int score, int scorePosition) {
+		if(scorePosition != 12)
+		{
+			if(this.scorePosition[scorePosition] == 0){
+				return true;
+			}
+		}
+		else{
+			return true;
+		}
+				
+		return false;
+	}
+	
 	public void addScore(int score, int scorePosition) {
-		this.scorePosition[scorePosition] = score;
+		if(scorePosition != 12){
+			this.scorePosition[scorePosition] = score;
+		}
+		else if(scorePosition == 12){
+			this.scorePosition[scorePosition] += score;
+		}
 	}
 	
 	String s;
@@ -35,6 +57,11 @@ public class ScoreFormYahtzee {
 		System.out.println(s);
 	}
 	
+	public boolean isOneToSevenFilled() {
+		
+		return false;
+	}
+			
 	public void setPrintScoreForm() {
 		System.out.println(s);
 	}

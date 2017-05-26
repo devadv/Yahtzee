@@ -15,6 +15,7 @@ public class Yahtzee {
 	public final static int SMALLSTRAIGHT = 30;
 	public final static int LARGESTRAIGHT = 40;
 	public final static int YAHTZEE = 50;
+	public final static int YAHTZEEBONUS = 100;
 
 	public Yahtzee() {
 

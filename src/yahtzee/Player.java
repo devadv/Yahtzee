@@ -1,7 +1,5 @@
 package yahtzee;
 
-import java.util.Scanner;
-
 public class Player {
 
 	private String name;

@@ -12,7 +12,7 @@ public class TestClass {
 	
 	public static void main(String[] args) {
 		yahtzee = new Yahtzee();
-		game = new Game();
+		game = new Game(2, 13);
 		player = new Player("Jan");
 		scoreFormYahtzee = new ScoreFormYahtzee(player);
 		

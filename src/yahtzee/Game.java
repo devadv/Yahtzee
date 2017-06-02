@@ -329,7 +329,7 @@ public class Game {
 		}
 	}
 	
-	public void setdices(Dice[] dices) {
+	public void setDices(Dice[] dices) {
 		this.dices = dices;
 	}
 	

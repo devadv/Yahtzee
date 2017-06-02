@@ -56,22 +56,22 @@ public class ScoreFormYahtzee {
 	
 	public void printEndResult() {
 		int totalCompartment1To7 = 0;
+		int totalScore = 0;
 		
 		for (int i = 1; i < 7; i++) {
 			totalCompartment1To7 += scorePosition[i];
 		}
 		
-		int totalScoreForm = 0;
-		for (int j = 0; j < scorePosition.length; j++) {
-			totalScoreForm += scorePosition[j];
-		}
-		
-		int totalScore = 0;
 		if(totalCompartment1To7 >= 63){
-			totalScore += totalCompartment1To7;
+			totalScore += 35;
+		}
+
+		for (int j = 0; j < scorePosition.length; j++) {
+			totalScore += scorePosition[j];
 		}
 		
-		System.out.println("Total score of:  " + this.player.getName() + " is " + totalScoreForm);
+		
+		System.out.println("Total score of:  " + this.player.getName() + " is " + totalScore);
 	}
 	
 	public int getScorePositon(Dice[] dices) {

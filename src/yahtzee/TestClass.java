@@ -34,7 +34,7 @@ public class TestClass {
 						
 		}
 		
-		game.setdices(dices);
+		game.setDices(dices);
 		printDices(dices);
 		game.testGameClass(false);
 		

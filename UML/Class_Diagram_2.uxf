@@ -95,39 +95,57 @@
       <x>0</x>
       <y>170</y>
       <w>380</w>
-      <h>210</h>
+      <h>270</h>
     </coordinates>
     <panel_attributes>Yahtzee
 --
 -rounds: int = 13
 -turns: int = 3
 -dices: int = 5
++int FULLHOUSE = 25
++int SMALLSTRAIGHT = 30
++int LARGESTRAIGHT = 40
++int YAHTZEE = 50
++int YAHTZEEBONUS = 100
 --
 +Yahtzee()
-+checkDiceComb(int [] DiceNum) : String
-+rules()</panel_attributes>
++isFullHouse(Dice[]) : boolean
++isStraight(Dice[]) : boolean
++isSameDices(Dice[], int) : boolean
++countValueDices(Dice[], int) : int
++countAllDices(Dice[]) : int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>410</y>
+      <y>460</y>
       <w>380</w>
-      <h>210</h>
+      <h>340</h>
     </coordinates>
     <panel_attributes>Game
 --
--numberOfPlayers int = 3
+-rounds : int
 -players : [] int
--startStop : boolean
+-repeat : boolean
 -dices : [] Dice
+-numberOfThrows : int
+-yahtzee : Yahtzee
+-
 --
-+Game(int round, int turn, int d, int dice)
++Game(int rounds, int players)
 +setPlayers(): [] int
 +roll()
 +start()
-+stop()
++playerTurn(Player)
++holdDices(Player)
++printDicesValue()
++reset()
++chooseScore(Player)
++executeScore(Player)
+addScore(Player, int)
+setDices(Dice[])
 
 
 </panel_attributes>
@@ -136,37 +154,44 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>480</x>
-      <y>190</y>
+      <x>400</x>
+      <y>350</y>
       <w>300</w>
-      <h>110</h>
+      <h>190</h>
     </coordinates>
     <panel_attributes>Dice
 --
 -diceValue : int
+-random : Random
+-hold : boolean
 --
 +Dice()
-+rollDice()
-+getDiceValue() : int
++roll()
++getValue() : int
++setValue(int value)
++setHold()
++isHold() : boolean
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>650</y>
+      <x>400</x>
+      <y>170</y>
       <w>380</w>
-      <h>150</h>
+      <h>160</h>
     </coordinates>
     <panel_attributes>Player
 --
--String playersName
--Game game
--String team
+-name : String
+-form : ScoreFormYahtzee
 --
-+Player(String name, String team, game)
-+playerTurn()</panel_attributes>
++Player(String name)
++setName(String name
++getName() : String
++displayScoreForm()
++getScoreForm() : ScoreFormYahtzee form</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -205,18 +230,25 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>480</x>
-      <y>330</y>
+      <x>400</x>
+      <y>560</y>
       <w>300</w>
-      <h>180</h>
+      <h>220</h>
     </coordinates>
     <panel_attributes>ScoreFormYahtzee
 --
--static int[] scorePos
+-scorePosition : int[]
+-player Player
 --
 +ScoreFormYahtzee(Player player)
++canAddScore(int score, int scorePosition)
 +addScore(int score, int scorePositon)
-+static printScoreForm</panel_attributes>
++printScoreForm()
++printEndResult()
++getScorePosition(Dice[]) : int
++isOneToSevenFilled(Dice[]) : boolean
++setPrintScoreForm()
++isYahtzeeFilled() : boolean</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
